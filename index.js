@@ -1,5 +1,13 @@
 const fileInput = document.getElementById("fileInput");
 
+function findAverageValue(arr) {
+	return (
+		arr.reduce((acc, el) => {
+			return acc + el;
+		}) / sortArr.length
+	);
+}
+
 function findMediana(arr) {
 	const mid = Math.floor(arr.length / 2);
 	if (arr.length % 2) {
@@ -63,11 +71,7 @@ fileInput.addEventListener("change", function () {
 			const sortArr = [...numberArr].sort((a, b) => a - b);
 			const minValue = sortArr[0];
 			const maxValue = sortArr[sortArr.length - 1];
-
-			const averageValue =
-				sortArr.reduce((acc, el) => {
-					return acc + el;
-				}) / sortArr.length;
+			const averageValue = findAverageValue(sortArr);
 			const medianaValue = findMediana(sortArr);
 
 			const maxIncreaseыSubsequences = findIncreaseSubsequence(numberArr, "+");
