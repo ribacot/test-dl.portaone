@@ -20,22 +20,23 @@ function findMediana(arr) {
 function findIncreaseSubsequence(arr, value) {
 	let resultArr = [];
 	let cacheArr = [];
-	let a = null;
+	let condition = null;
 
 	for (let i = 1; i < arr.length; i += 1) {
+
 		switch (value) {
 			case "+":
-				a = arr[i] - arr[i - 1] <= 0;
+				condition = arr[i] - arr[i - 1] <= 0;
 				break;
 			case "-":
-				a = arr[i] - arr[i - 1] >= 0;
+				condition = arr[i] - arr[i - 1] >= 0;
 				break;
 			default:
 				console.log("no value");
 				return;
 		}
 
-		if (a) {
+		if (condition) {
 			if (cacheArr.length) {
 				resultArr.push(cacheArr);
 			}
