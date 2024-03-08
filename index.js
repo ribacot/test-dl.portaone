@@ -90,27 +90,56 @@
 // 		fileDisplayArea.innerText = "File not supported!";
 // 	}
 // });
-const arrValues = [1, 2, 5, 5, 5, 1, 1, 6, 6, 8, 7, 9, 10, 55, 55];
-function fn(arr) {
+const arrValues = [1, 2, 5, 5, 5, 1, 1, 6, 6, 8, 7, 9, 10, 55, 55, 55];
+function fnNumber(arr) {
 	let cachArr = [];
 	const resulArr = [];
 	for (let i = 0; i < arr.length; i += 1) {
 		cachArr = [];
-
-		if (resulArr.some(({ key }) => key === arr[i])) {
+		const condition = resulArr
+			.map((el) => Object.keys(el))
+			.some((key) => Number(key) === arr[i]);
+		if (condition) {
 			continue;
 		}
 
-		for (let j = 0; j < arr.length; j += 1) {
+		for (let j = i + 1; j < arr.length; j += 1) {
 			if (arr[i] === arr[j]) {
 				cachArr.push(arr[i]);
 			}
 		}
 		if (cachArr.length) {
-			resulArr.push({ key: arr[i], value: cachArr.length });
+			resulArr.push({ [arr[i]]: cachArr.length + 1 });
 		}
 	}
-	console.log(resulArr);
+	return resulArr;
+}
+function fnStr(str) {
+	strArr = str.split("");
+	let cachArr = [];
+	const resulArr = [];
+	for (let i = 0; i < strArr.length; i += 1) {
+		cachArr = [];
+
+		const condition = resulArr
+			.map((el) => Object.keys(el))
+			.some((key) => key === strArr[i]);
+
+		if (condition) {
+			continue;
+		}
+
+		for (let j = i + 1; j < strArr.length; j += 1) {
+			if (strArr[i] === strArr[j]) {
+				cachArr.push(strArr[i]);
+			}
+		}
+		if (cachArr.length) {
+			resulArr.push({ [strArr[i]]: cachArr.length + 1 });
+		}
+	}
+	return resulArr;
 }
 
-fn(arrValues);
+console.log(fnNumber(arrValues));
+console.log(fnStr("arrValuess"));
